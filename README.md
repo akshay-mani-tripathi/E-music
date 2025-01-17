@@ -68,12 +68,19 @@ Project Structure
 
 myproject1
 ├── accounts            # User authentication and subscription
+
 ├── myproject1
+
 ├── templates           # HTML templates
+
 ├── static              # Static files (CSS, JS, images)
+
 ├── requirements.txt    # Python dependencies
+
 ├── README.md           # Project documentation
+
 ├── manage.py           # Django project manager
+
 
 Future Enhancements
 
