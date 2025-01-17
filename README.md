@@ -67,6 +67,7 @@ View personalized song recommendations.
 Project Structure
 
 myproject1
+
 ├── accounts            # User authentication and subscription
 
 ├── myproject1
