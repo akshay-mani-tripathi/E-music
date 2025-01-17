@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Search Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #6a1b9a;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        li:hover {
+            transform: scale(1.03);
+        }
+
+        strong {
+            color: #6a1b9a;
+            font-size: 18px;
+        }
+
+        a {
+            color: #1db954;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #1ed760;
+        }
+
+        .error, .no-results {
+            color: #e74c3c;
+            font-size: 18px;
+        }
+
+        .no-results {
+            color: #95a5a6;
+        }
+    </style>
+</head>
+<body style="background-image: url('{% static "image/bg1_.jpg" %}'); background-repeat: no-repeat; background-size: cover;padding: 0px;" >
+
+    <div class="container">
+        <h1>Search Results for: "{{ query }}"</h1>
+        {% if songs %}
+            <ul>
+                {% for song in songs %}
+                    <li>
+                        <strong>{{ song.name }}</strong> by {{ song.artist }}
+                        <br><a href="{{ song.url }}" target="_blank">Listen on Spotify</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elif error %}
+            <p class="error">{{ error }}</p>
+        {% else %}
+            <p class="no-results">No results found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

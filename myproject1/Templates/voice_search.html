@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .voice-search-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .voice-search-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #6a1b9a;
+        }
+        .start-btn {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #6a1b9a;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .start-btn:hover {
+            background-color: #9c4dcc;
+            transform: translateY(-3px);
+        }
+        .results-container {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        .listening-indicator {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #ff5733;
+        }
+    </style>
+</head>
+<body style="background-image: url('{% static "image/bg1_.jpg" %}'); background-repeat: no-repeat; background-size: cover;padding: 0px;" >
+
+    <div class="voice-search-container">
+        <h1 class="voice-search-title">Search Songs by Voice</h1>
+        <p>Click the button below and start speaking to search for your favorite songs.</p>
+        <form method="POST" id="voice-search-form" action="{% url 'voice_search' %}">
+            {% csrf_token %}
+            <button type="button" id="start-voice-search" class="start-btn">Start Voice Search</button>
+        </form>
+        <div class="listening-indicator" id="listening-indicator" style="display: none;">Listening...</div>
+        <div class="results-container" id="results"></div>
+    </div>
+
+    <script>
+        const startVoiceSearch = document.getElementById("start-voice-search");
+        const listeningIndicator = document.getElementById("listening-indicator");
+        const resultsContainer = document.getElementById("results");
+
+        startVoiceSearch.addEventListener("click", () => {
+            if (!('webkitSpeechRecognition' in window)) {
+                resultsContainer.textContent = "Your browser does not support voice recognition.";
+                return;
+            }
+
+            const recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = "en-US";
+
+            recognition.onstart = () => {
+                listeningIndicator.style.display = "block";
+                resultsContainer.textContent = "";
+            };
+
+            recognition.onresult = (event) => {
+                listeningIndicator.style.display = "none";
+                const speechResult = event.results[0][0].transcript;
+                resultsContainer.textContent = `You said: "${speechResult}"`;
+                
+                // Optionally, submit the voice result to the backend
+                const form = document.getElementById("voice-search-form");
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "query";
+                input.value = speechResult;
+                form.appendChild(input);
+                
+                // Submit the form
+                form.submit();
+            };
+
+            recognition.onerror = (event) => {
+                listeningIndicator.style.display = "none";
+                resultsContainer.textContent = `Error occurred: ${event.error}`;
+            };
+
+            recognition.onend = () => {
+                listeningIndicator.style.display = "none";
+            };
+
+            recognition.start();
+        });
+    </script>
+</body>
+</html>

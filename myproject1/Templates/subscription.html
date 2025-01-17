@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Music - Subscription</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('{% static "image/bg1_.jpg" %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .subscription-pack {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .subscription-pack h2 {
+            font-size: 2.5rem;
+            color: #6a1b9a;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .subscription-card {
+            background: rgba(22, 22, 22, 0.8); /* White background with 80% opacity */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .subscription-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(106, 27, 154, 0.4);
+        }
+
+
+        .subscription-card h3 {
+            font-size: 1.5rem;
+            color: #6a1b9a;
+            margin-bottom: 15px;
+        }
+
+        .subscription-card .price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #8e24aa;
+            margin-bottom: 20px;
+        }
+
+        .subscription-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .subscription-card ul li {
+            font-size: 1rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .subscription-card ul li i {
+            color: #8e24aa;
+            margin-right: 10px;
+        }
+
+        .subscribe-btn {
+            background: linear-gradient(90deg, #6a1b9a, #8e24aa);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .subscribe-btn:hover {
+            background: linear-gradient(90deg, #8e24aa, #6a1b9a);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'dashboard' %}">E-Music</a>
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'about_us' %}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'subscription' %}">Subscription Pack</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="subscription" class="subscription-pack">
+        <h2>Choose Your Subscription Plan</h2>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="subscription-card">
+                        <h3>Basic Plan</h3>
+                        <p class="price">$6.99/month</p>
+                        <ul>
+                            <li><i class="fas fa-tv"></i> Watch on 1 screen</li>
+                            <li><i class="fas fa-video"></i> SD quality</li>
+                            <li><i class="fas fa-ad"></i> Fewer ads</li>
+                        </ul>
+                        <button class="subscribe-btn">Subscribe</button>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="subscription-card">
+                        <h3>Standard Plan</h3>
+                        <p class="price">$15.49/month</p>
+                        <ul>
+                            <li><i class="fas fa-tv"></i> Watch on 2 screens</li>
+                            <li><i class="fas fa-video"></i> HD quality</li>
+                            <li><i class="fas fa-ad"></i> No ads</li>
+                        </ul>
+                        <button class="subscribe-btn">Subscribe</button>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="subscription-card">
+                        <h3>Premium Plan</h3>
+                        <p class="price">$22.99/month</p>
+                        <ul>
+                            <li><i class="fas fa-tv"></i> Watch on 4 screens</li>
+                            <li><i class="fas fa-video"></i> UHD/4K quality</li>
+                            <li><i class="fas fa-ad"></i> No ads</li>
+                        </ul>
+                        <button class="subscribe-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoO+1jQ1lA5TygtQuEeauzyjZBPKxKrjr6eRPgk4lgFyyFf" crossorigin="anonymous"></script>
+</body>
+</html>
