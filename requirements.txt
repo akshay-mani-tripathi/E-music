@@ -95,7 +95,7 @@ grpcio==1.60.1
 gunicorn==23.0.0
 h11==0.16.0
 h5py==3.10.0
-htmlmin==0.1.12
+
 humansignal-drf-yasg==1.21.9
 idna==3.6
 ifaddr==0.2.0
