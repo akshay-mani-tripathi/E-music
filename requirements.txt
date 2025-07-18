@@ -1,3 +1,7 @@
+pip>=23.1
+setuptools>=65
+wheel>=0.40
+
 absl-py==2.1.0
 aioice==0.9.0
 aiortc==1.7.0
@@ -14,7 +18,6 @@ astunparse==1.6.3
 async-lru==2.0.4
 attr==0.3.1
 attrs==23.2.0
-
 azure-core==1.30.0
 azure-storage-blob==12.19.0
 Babel==2.14.0
@@ -95,7 +98,6 @@ grpcio==1.60.1
 gunicorn==23.0.0
 h11==0.16.0
 h5py==3.10.0
-
 humansignal-drf-yasg==1.21.9
 idna==3.6
 ifaddr==0.2.0
@@ -143,9 +145,7 @@ MarkupSafe==2.1.5
 matplotlib==3.8.2
 matplotlib-inline==0.1.6
 mdurl==0.1.2
-
 mistune==3.0.2
-
 modules==1.0.0
 murmurhash==1.0.10
 namex==0.0.7
