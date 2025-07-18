@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-jug#3!d%ht+%b+_yqhc2n2i%uq1%&c-e8r7l%$g8r=38@#$!vd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['your-heroku-app-name.herokuapp.com']
+ALLOWED_HOSTS = ['your-heroku-app-name.herokuapp.com','e-music.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
