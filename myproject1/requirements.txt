@@ -5,3 +5,4 @@ gunicorn>=21.2.0
 whitenoise>=6.6.0
 requests>=2.31.0
 dj-database-url>=1.0.0
+speechrecognition
