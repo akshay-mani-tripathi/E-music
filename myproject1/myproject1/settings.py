@@ -22,7 +22,7 @@ EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 DEFAULT_FROM_EMAIL = DEFAULT_FROM_EMAIL
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jug#3!d%ht+%b+_yqhc2n2i%uq1%&c-e8r7l%$g8r=38@#$!vd'
+SECRET_KEY = 'r#6tyz)83in4@ii&78%)z6z#nxr(^fni2p2t!*ow7-#4bo3=bk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
