@@ -1,0 +1,37 @@
+{% extends "dashboard.html" %}
+
+{% block title %}Profile Page{% endblock %}
+
+{% block content %}
+<div class="containe">
+    <div class="settings-section">
+        <h3><center>Welcome, {{user.username}}</center></h3>
+    </div>
+    <div class="container">
+        <h2>Login Details</h2>
+        <ul>
+            <li><strong>Username:</strong>{{ user.username }}</li>
+            <li><strong>Email:</strong>{{ user.email }}</li>
+            <li><strong>First Name:</strong>{{ user.first_name }}</li>
+            <li><strong>Last Name:</strong>{{ user.last_name }}</li>
+            <li><strong>Last Login:</strong>{{ user.last_login }}</li>
+            <li><strong>Date Joined:</strong>{{ user.date_joined }}</li>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>Profile.Information</h2>
+        <div>
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+            {% else %}
+                <p>No profile picture uploaded.</p>
+            {% endif %}
+            <ul>
+                <li><strong>Bio:</strong>{{ profile.bio}}</li>
+                <li><strong>Location:</strong>{{ profile.location}}</li>
+            </ul>
+        </div>  
+    </div>
+</div>
+
+{% endblock %}

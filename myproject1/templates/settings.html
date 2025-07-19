@@ -1,0 +1,130 @@
+{% extends "dashboard.html" %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+<div class="settings-container">
+    <div class="settings-header">
+        <h2><i class="fas fa-cogs"></i> Settings</h2>
+        <p>Manage your profile, account, and preferences</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab-button active" id="updateProfileTab" onclick="showTab('update-profile')">
+            <i class="fas fa-user-edit"></i> Update Profile
+        </button>
+        <button class="tab-button" id="accountSettingsTab" onclick="showTab('account-settings')">
+            <i class="fas fa-user-shield"></i> Account Settings
+        </button>
+        <button class="tab-button" id="preferencesTab" onclick="showTab('preferences')">
+            <i class="fas fa-sliders-h"></i> Preferences
+        </button>
+    </div>
+
+    <!-- Tabs Content -->
+    <div class="settings-body">
+        <!-- Update Profile -->
+        <div class="tab-content update-profile" id="update-profile">
+            <form method="POST" enctype="multipart/form-data" class="settings-form">
+                {% csrf_token %}
+                <h3>Update Profile Information</h3>
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="profile-pic"><i class="fas fa-image"></i> Profile Picture</label>
+                    <input type="file" id="profile-pic" name="profile_pic">
+                </div>
+                <button type="submit" name="update_profile" class="btn update-btn">
+                    <i class="fas fa-save"></i> Update Profile
+                </button>
+            </form>
+        </div>
+
+        <!-- Account Settings -->
+        <div class="tab-content account-settings" id="account-settings" style="display: none;">
+            <form method="POST" class="settings-form">
+                {% csrf_token %}
+                <h3>Account Settings</h3>
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="language"><i class="fas fa-globe"></i> Language</label>
+                    <select id="language" name="language">
+                        <option value="en">English</option>
+                        <option value="tn">Tamil</option>
+                        <option value="ml">Malayalam</option>
+                        <option value="hd">Hindi</option>
+                        <option value="tl">Telugu</option>
+                    </select>
+                </div>
+                <button type="submit" name="update_account" class="btn update-btn">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </form>
+        </div>
+
+        <!-- Preferences -->
+        <div class="tab-content preferences" id="preferences" style="display: none;">
+            <form method="POST" class="settings-form">
+                {% csrf_token %}
+                <h3>Preferences</h3>
+                <div class="form-group">
+                    <label for="notifications"><i class="fas fa-bell"></i> Email Notifications</label>
+                    <select id="notifications" name="notifications">
+                        <option value="enabled">Enabled</option>
+                        <option value="disabled">Disabled</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="theme"><i class="fas fa-palette"></i> Theme</label>
+                    <select id="theme" name="theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                </div>
+                <button type="submit" name="update_preferences" class="btn update-btn">
+                    <i class="fas fa-save"></i> Save Preferences
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    function showTab(tabName) {
+        // Hide all tabs
+        const allTabs = document.querySelectorAll('.tab-content');
+        allTabs.forEach(tab => tab.style.display = 'none');
+
+        // Remove 'active' class from all buttons
+        const allButtons = document.querySelectorAll('.tab-button');
+        allButtons.forEach(button => button.classList.remove('active'));
+
+        // Show the selected tab and set the button as active
+        document.getElementById(tabName).style.display = 'block';
+        document.getElementById(tabName + 'Tab').classList.add('active');
+    }
+
+    // Default to 'Update Profile' tab
+    window.onload = function () {
+        showTab('update-profile');
+    };
+</script>
+{% endblock %}
